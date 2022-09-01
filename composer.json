@@ -1,0 +1,16 @@
+{
+    "name": "twigasnt/asnt",
+    "description": "\"Project with twig templates\"",
+    "autoload": {
+        "psr-4": {
+            "Twigasnt\\Asnt\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Milan Chaudhary",
+            "email": "chaudharymilan996@gmail.com"
+        }
+    ],
+    "require": {}
+}
