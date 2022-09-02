@@ -2,8 +2,10 @@
 session_start();
 $baseurl = 'http://localhost/asnt-twig/src/';
 
+
 $db = new twigasnt\asnt\Config\db();
 $conn = $db->getConnection();
+
 
 $dashboardModel = new \twigasnt\asnt\Model\DashboardModel($conn);
 $userModel = new \twigasnt\asnt\Model\UserModel($conn);
@@ -55,6 +57,9 @@ $dashboardController = new \twigasnt\asnt\Controller\DashboardController($dashbo
                 <?php 
             }
             ?>
+            <li><button id="user">User List</button></li>
+            <li><button id="document">Add Document</button><br><br></li>
+            <li><button id="vdocument">View Document</button></li>
         </ul>
         
         </div>
