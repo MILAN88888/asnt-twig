@@ -3,7 +3,7 @@
     "description": "\"Project with twig templates\"",
     "autoload": {
         "psr-4": {
-            "Twigasnt\\Asnt\\": "src/"
+            "twigasnt\\asnt\\": "src/"
         }
     },
     "authors": [
@@ -12,5 +12,11 @@
             "email": "chaudharymilan996@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "twig/twig": "^3.3"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.8",
+        "squizlabs/php_codesniffer": "^3.7"
+    }
 }

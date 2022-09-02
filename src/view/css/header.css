@@ -1,0 +1,9 @@
+#logout
+{	float:right;
+	border-radius: 5px;
+}
+#logout:hover{
+	background-color: green;
+	color:white;
+}
+

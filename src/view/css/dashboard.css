@@ -1,0 +1,91 @@
+#page-container1
+{
+positon:relative;
+min-height:200vh;
+}
+#page-container1 #msge
+{
+    display: inline;
+    color: green;
+    
+}
+#user,#document, #vdocument,#dbtn{
+	background-color:#F67280;
+	color:white;
+}
+#user:hover,#document:hover, #vdocument:hover{
+	background-color: #00FF00;
+	color:white;
+}
+#page-container1 #msge span{
+    font-size: 20px;
+}
+#page-container1 #btn
+{
+    background-color: red;
+    
+}
+#page-container1 #udiv
+{	
+	width:100%;
+	height:auto;
+	background-color:#E0FFFF;
+	display: none;
+}
+#user, #document ,#vdocument
+{
+	width: 150px;
+}
+#udiv #tbl,#udiv tr, #udiv td, #udiv th
+{
+	border: 1px solid black;
+	border-collapse: collapse;
+	
+}
+#udiv #tbl
+{
+	width: 100%;
+}
+#editdiv
+{
+	position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid lightgreen;
+    border-radius: 5px;
+    background-color: #bbf7d0;
+    width: 300px;
+    height: 300px;
+	padding-left:35px;
+	display:none;
+    
+}
+#page-container1 #viewdiv
+{	
+	width:100%;
+	height:auto;
+	background-color:#E0FFFF;
+	display: none;
+}
+#page-container1 #ddiv
+{	
+	width:100%;
+	height:auto;
+	
+	display: none;
+}
+
+#viewdiv #vtbl,#viewdiv tr, #viewdiv td, #viewdiv th
+{
+	border: 1px solid black;
+	border-collapse: collapse;
+	
+}
+#vtbl
+{
+	width: 98%;
+	margin-left:10px;
+	
+}
+	

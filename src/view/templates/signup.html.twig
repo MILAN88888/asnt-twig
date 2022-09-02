@@ -1,0 +1,18 @@
+<div id="containers">
+	<button id='closes' > x</button>
+	<div>
+		<h1>Registration Form</h1>
+		<br>
+		<form action="src/view/action.php"  id='logforms' autocomplete="off" method="POST">
+			<table>
+			<tr><td>Name</td><td><input type="text" id='names'name='name' /><span id="nameerrors" ><br></span></td></tr>
+			<tr><td>Email</td><td><input type="email" id='emails'name='email' /><br><span id="emailerrors" ></span></td></tr>
+			<tr><td>Password</td><td><input type="password" id="passs" name='pass'  /><br><span id="passerrors"></span></td></tr>
+			<tr><td>Phone no.</td><td> <input type="text" id="phone_nos" name="phone_no"/> <br><span id="phoneerrors"></span></td></tr>
+			<tr><td>Company</td><td><input type="text" id="companys" name="company" /> <br><span id="companyerrors"></span></td></tr>
+			</table>
+			<button type="submit" id="submit" name='signup'>Register</button>
+			<p id='errors'></p>
+		</form>
+	</div>
+</div>
