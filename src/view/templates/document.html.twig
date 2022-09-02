@@ -1,0 +1,24 @@
+<div id = "ddiv">
+	<form action="dashboard.php?document=document" id="documentform" method="POST" enctype="multipart/form-data">
+	<b><lable>Browser Docuemnt</lable></b><br>
+	<input type="file"  name="document" id="documentfile" required /><br>
+	
+	<button type="submit" id="dbtn" name="uploadfile">upload</button>
+	</form>
+</div>
+
+<div id="viewdiv">
+<table id="vtbl">
+<tr><th>Name</th><th>View</th></tr>
+{% for value in res %}
+    <tr><th>{{ value["document_name"] }}</th>
+        <td><a href="../upload/'{{ value["document_name"] }}">view attachment</a></td>
+    </tr>
+
+{% endfor %}
+</table>
+{% for i in range(low=1, high=docpagi, step=1) %}
+    <a href="?docstart={{ i }}"><button class="btn2">{{ i }}</button></a>
+    {% endfor %}
+
+</div>

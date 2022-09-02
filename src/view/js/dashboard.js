@@ -1,3 +1,4 @@
+
 $('#btn').click(function()
 {
     $('#msge').hide();
@@ -19,23 +20,37 @@ $('#vdocument').click(function(){
 	$('#viewdiv').show();
 	$('#udiv').hide();
 
-});
+})
+$('#adduser').click(function()
+	{
+		$('#containers1').show();
+	});
 
 function mydelete(str)
 {	
+	var conf = confirm("Are you sure want to delete user");
+	if( conf == true) {
 	$.ajax(
 	{
-		url:'http://localhost/asnt-3/controller/user.php?type=Delete',
+		url:'action.php?type=Delete',
 		type : 'post',
 		data : 'id='+str,
 		success:function(res)
-		{
-			if ( res==true)
+		{	
+			console.log('hello');
+			if (res == true)
 			{
 				$('#delete'+str).hide();
+				$('#editmsg').html('Deleted successfully');
+			}
+			else{
+				console.log('failed');
 			}
 		}
+	
+
 	});
+}
 }
 function myedit(str)
 {
@@ -49,18 +64,14 @@ function myedit(str)
 	$('#editphone').val(phone);
 	$('#editdiv').show();
 	$('#editbtn').click(function(){
-		console.log('hllo');
+		
 		var newname = $('#editname').val();
 		var newemail =$('#editemail').val();
 		var newcompany =$('#editcompany').val();
 		var newphone =$('#editphone').val();
-		console.log(newname);
-		console.log(newemail);
-		console.log(newcompany);
-		console.log(newphone);
-		console.log(str);
+		
 		$.ajax({
-			url:'http://localhost/asnt-3/controller/user.php?type=Update',
+			url:'action.php?type=Update',
 			type:'post',
 			data: 'id='+str+'&name='+newname+'&email='+newemail+'&company='+newcompany+'&phone='+newphone,
 			success: function(res)
@@ -71,6 +82,7 @@ function myedit(str)
 					$('#company'+str).text(newcompany);
 					$('#phone'+str).text(newphone);
 					$('#editdiv').hide();
+					$('#editmsg').html('edited successfully');
 					}
 					else
 					{

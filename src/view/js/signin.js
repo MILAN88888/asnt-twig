@@ -20,7 +20,7 @@ jQuery("#logform").validate({
     },
         messages:{
             email:{
-				required: "Please provide a email",
+				required: "** Please provide a email **",
                 email:"** Please enter a valid email address **",
             },
             pass:{

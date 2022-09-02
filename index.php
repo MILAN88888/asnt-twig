@@ -8,11 +8,11 @@ if (!isset($_SESSION['user_id'])) {
     $homeController = new twigasnt\asnt\Controller\HomeController();
     echo $homeController->home();
 }
-if (isset($_SESSION['user_id'])) {
-    if (isset($_GET['type']) && $_GET['type'] == 'dashboard') {
-        $dashboardController->dashboard();
-    }
-}
+// if (isset($_SESSION['user_id'])) {
+//     if (isset($_GET['type']) && $_GET['type'] == 'dashboard') {
+//         $dashboardController->dashboard();
+//     }
+// }
 
 if (isset($_GET['msg']) && $_GET['msg'] == 'fail') {
 		echo '<div id="msge"><span>Invalid credentials !!</span><button id="btn3">x</button></div>';

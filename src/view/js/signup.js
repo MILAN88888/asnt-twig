@@ -10,7 +10,7 @@ jQuery(document).ready(function() {
 	$('#emails').change(function(){
 		var email = $('#emails').val();
 		$.ajax({
-			url : 'http://localhost/asnt-3/controller/user.php?type=LoginValid',
+			url : 'http://localhost/asnt-twig/src/view/action.php?type=LoginValid',
 			type : 'post',
 			data : 'email='+email,
 			success : function(result)

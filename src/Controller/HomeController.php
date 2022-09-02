@@ -18,14 +18,10 @@ class HomeController
 
     public function home()
     {
-        // echo "i am working";
-        // print_r($this->twig);
-        // if (!isset($_SESSION['user_id'])) {
-            // include ('view/main.php');
-            return $this->twig->render('signin.html.twig',["name" => "ajeet"]);
+       
+            return $this->twig->render('signin.html.twig');
             
-            // $this->twig->render('signup.html.twig');
-        // }
+          
     }
 }
 ?>

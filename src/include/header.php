@@ -16,7 +16,7 @@ $dashboardController = new \twigasnt\asnt\Controller\DashboardController($dashbo
 ?>
 <html>
 <head>
-<title>header</title>
+<title>anst-twig</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,7 +44,7 @@ $dashboardController = new \twigasnt\asnt\Controller\DashboardController($dashbo
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link text-white" href="#">Home </a>
+                <a class="nav-link text-white" href="<?php !isset($_SESSION['user_id']) ? print_r("index.php") : print_r("dashboard.php") ?>">Home </a>
             </li>
             <?php 
             if (!isset($_SESSION['user_id'])) { ?>
@@ -56,10 +56,14 @@ $dashboardController = new \twigasnt\asnt\Controller\DashboardController($dashbo
                 </li>
                 <?php 
             }
+            if(isset($_SESSION['user_id']) && $_SESSION['user_email'] == 'admin@gmail.com') { ?>
+            <li><a href="dashboard.php?user=user" ><button id="user">User</button></a></li>
+            <?php
+            }
+            if(isset($_SESSION['user_id'])) {
             ?>
-            <li><button id="user">User List</button></li>
-            <li><button id="document">Add Document</button><br><br></li>
-            <li><button id="vdocument">View Document</button></li>
+            <li><a href="dashboard.php?document=document"><button id="document" >Document</button></a></li>
+            <?php } ?>
         </ul>
         
         </div>

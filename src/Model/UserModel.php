@@ -70,7 +70,7 @@ class UserModel
 	public function UpdateModel($userId,$userName,$userEmail,$userCompany,$userPhone)
 	{
 		$sql = "UPDATE user SET user_name = '$userName', user_email = '$userEmail', user_company ='$userCompany', user_phone_no ='$userPhone'  WHERE user_id = '$userId'";
-		$res = mysqli_query($this->conn,$sql);
+		$res = mysqli_query($this->conn, $sql);
         if ($res)
         {   
             return true;
@@ -88,6 +88,19 @@ class UserModel
         
   
 	}
+    public function addNewUserModel($newName,$newEmail,$newPassword,$newCompany,$newPhone)
+    {
+        $sql = 'INSERT INTO user (`user_name`,user_email,`user_password`,user_phone_no,`user_company`) values ("'.$newName.'", "'.$newEmail.'","'.$newPassword.'","'.$newPhone.'","'.$newCompany.'")';
+        $res = mysqli_query($this->conn,$sql);
+        if($res)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
 
 ?>

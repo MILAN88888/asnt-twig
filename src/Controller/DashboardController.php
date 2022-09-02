@@ -2,15 +2,24 @@
 
 namespace twigasnt\asnt\Controller;
 
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
+
 class DashboardController
 {
+    private $loader;
+    private $twig;
+
     public $_baseurl = 'http://localhost/asnt-twig/';
     private $_obj;
     private $_numresu;
     private $_numresd;
 
+
     public function __construct($dashboardModel)
     {
+        $this->loader = new FilesystemLoader(__DIR__.'/../view/templates');
+        $this->twig = new Environment($this->loader);
         $this->dashboardModel = $dashboardModel;
     }
 
@@ -20,10 +29,10 @@ class DashboardController
         return $res;
     }
 
-    public function seeUserController($start, $per_page)
+    public function seeUserController($start, $per_page, $pagi)
     {
         $res = $this->dashboardModel->seeUserModel($start, $per_page);
-        return $res;
+        return $this->twig->render('user.html.twig',['res'=>$res,'pagi'=>$pagi]);
     }
 
     public function numseeDocumentController()
@@ -32,17 +41,18 @@ class DashboardController
         return $res;
     }
 
-    public function seeDocumentController($docstart, $docper_page)
+    public function seeDocumentController($docstart, $docper_page, $docpagi)
     {
         $res = $this->dashboardModel->seeDocumentModel($docstart, $docper_page);
-        return $res;
+        return $this->twig->render('document.html.twig',['res'=>$res,'docpagi'=>$docpagi]);
     }
 
-    public function dashboard()
+    public function dashboard($record, $docrecord, $email)
     {
-        header('location:../view/dashboard.php');
+        return $this->twig->render('dashboard.html.twig',['record'=>$record,'docrecord' => $docrecord, 'useremail'=>$email]);
     }
 }
+
 // if (
 // (isset($_GET['type']) && $_GET['type'] != '') ||
 // (isset($_GET['start']) && $_GET['start']  != '') ||

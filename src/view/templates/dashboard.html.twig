@@ -1,0 +1,58 @@
+
+<div id="editdiv">
+	<h4>Edit Details</h4>
+	Name<br><input type="text" id="editname" required /><br>
+	Email<br><input type="text" id="editemail" required /><br>
+	Company<br><input type="text" id="editcompany" required /><br>
+	Phone no.<br><input type="text" id="editphone" required /><br>
+	<br>
+	<button  class ="btn2" id="editbtn">submit</button>
+	<button  class ="btn2" id="editclosebtn">close</button>
+</div>
+{% block dashboard %}
+<div id="summary">
+{% if useremail == "admin@gmail.com" %}
+<table class="table">
+	<thead>
+	  <tr>
+		<th scope="col">Type</th>
+		<th scope="col">Number</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr>
+		<td>User</td>
+		<td>{{ record }}</td>
+	  </tr>
+	  <tr>
+		<td>Document</td>
+		<td>{{ docrecord }}</td>
+	  </tr>
+	</tbody>
+  </table>
+  {% else %}
+  <table class="table">
+	<thead>
+	  <tr>
+		<th scope="col">Type</th>
+		<th scope="col">Number</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr>
+		<td>Document</td>
+		<td>{{ docrecord }}</td>
+	  </tr>
+	</tbody>
+  </table>
+{% endif %}
+</div>
+{% endblock %}
+<script>
+$('#editclosebtn').click(function()
+{
+	$('#editdiv').hide();
+	
+});
+
+</script>

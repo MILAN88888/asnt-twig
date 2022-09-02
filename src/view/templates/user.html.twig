@@ -1,0 +1,167 @@
+{# {% extends "dashboard.html.twig" %}
+{% block dashboard %}
+<h1>hello</h1>
+{% endblock %} #}
+<div id="udiv">
+    <br>
+    <button id="adduser">Add New User</button>
+    <div id="editmsg"></div>
+    <div id="deletemsg"></div>
+    <table id="tbl">
+    <tr><th>Id</th><th>Name</th><th>Email</th><th>Company</th><th>Phone no.</th><th>Edit</th><th>Delete</th></tr>
+    {% for value in res %}
+        
+    <tr id="delete{{ value["user_id"] }}" >
+        <th>{{ value['user_id'] }}</th>
+        <th id="name{{ value["user_id"] }}" > {{ value['user_name'] }}</th>
+        <th id="email{{ value["user_id"] }}">{{ value['user_email'] }}</th>
+        <th id="company{{ value["user_id"] }}" > {{ value['user_company'] }}</th>
+        <th id="phone{{ value["user_id"] }}"> {{ value['user_phone_no'] }}</th>
+        <th><button class="btn2" id="edit{{ value["user_id"] }}" onclick="myedit('{{ value.user_id }}')">edit</button></th>
+        <th><button class="btn2" onclick="mydelete('{{ value.user_id }}')">Delete</button>
+        </th>
+    </tr>
+    {% endfor %}
+    </table>
+    {% for i in range(low=1, high=pagi, step=1) %}
+    <a href="?start={{ i }}"><button class="btn2">{{ i }}</button></a>
+    {% endfor %}
+    </div>
+    
+    <div id="adduserdetail">
+        <button id="newformclose">X</button>
+        <form action="action.php" id="newaddform" method="post" autocomplete="off">
+            <fieldset>
+                    <legend><u>New User Details</u></legend>
+                    Name<br>
+                    <input type="text" name="newname"/><br>
+                    Email<br>
+                    <input type="email" id="newemail" name="newemail" /><br>
+                    <span id="newemailerror"></span>
+                    Password<br>
+                    <input type="password" name="newpassword"/><br>
+                    Company<br>
+                    <input type="text" name="newcompany" /><br>
+                    Phone<br>
+                    <input type="text" name="newphone"  />
+                    <button type="submit" name="addnewuser">Add</button>
+                </form>
+                   
+            </fieldset>
+            
+    </div>
+
+<style>
+    #adduserdetail
+    {   
+        display: none;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid lightgreen;
+        border-radius: 5px;
+        background-color: #bbf7d0;
+        width: 400px;
+    }
+    #adduserdetail form fieldset
+    {
+        width: 300px;
+    }
+    #newaddform
+    {
+        margin-left: 80px;
+    }
+    #newaddform input{
+        height: 20px;
+    }
+
+    #newformclose{
+        float: right;
+        background-color: red;
+    }
+</style>
+<script>   
+    $('#adduser').click(function(){
+        $('#adduserdetail').show(1000);
+    });
+    
+    jQuery(document).ready(function() {
+        $('#newformclose').click(function(){
+            $('#adduserdetail').hide(1000);
+        });
+        $('#newemail').change(function(){
+            var email = $('#newemail').val();
+            $.ajax({
+                url : 'http://localhost/asnt-twig/src/view/action.php?type=LoginValid',
+                type : 'post',
+                data : 'email='+email,
+                success : function(result)
+                {
+                    if(result == true )
+                    {
+                        $('#newemailerror').html('email is already present');
+                    }
+                    else
+                    {
+                        $('#newemailerror').html('');
+                    }	
+                }
+                
+            });
+        });
+        
+    jQuery("#newaddform").validate({
+        
+        
+        rules: {
+            newemail:{
+                required:true,
+                email:true
+            },
+            newpassword:{
+                required:true,
+                minlength:8,
+                maxlength:20,
+            },
+            newname:{
+                required: true,
+                maxlength: 20,
+                minlength:5,
+            },
+            newphone:{
+                required:true,
+                number : true,
+                minlength:10,
+                maxlength:10,
+                
+            },
+            newcompany:"required"
+        },
+            messages:{
+                newemail:{
+                    required: "Please provide a email",
+                    email:"** Please enter a valid email address **",
+                },
+                newpassword:{
+                    required: "** Password is mandatory **",
+                    minlength: "password must be 10 character ",
+                    maxlength : "Password must not morethan 20 character",
+                    
+                },
+                newname:{
+                    required: "Please enter name",
+                    minlength: "Name must have at leat 5 character",
+                },
+                newphone:{
+                    required: "Please provide a phone",
+                    number : "please provide number only",
+                    minlength:"phone no. must have 10 digit",
+                    maxlength:"phone no. must have 10 digi",
+                },
+                newcompany:"Please provide a company ",
+            }
+    });
+    });
+
+</script>
