@@ -46,6 +46,7 @@ class DashboardController
     /**
      * Function to get number of all users.
      * 
+     * @return return $res number of user.
      */
     public function numseeUserController()
     {
@@ -58,8 +59,8 @@ class DashboardController
      * @param $start    start point for pagination.
      * @param $per_page per page user count.
      * @param $pagi     pagi for user.
-     *                  return user
-     *                  from the twig.
+     * 
+     * @return return user twig  from the twig.
      */
     public function seeUserController($start, $per_page, $pagi)
     {
@@ -69,7 +70,7 @@ class DashboardController
     /**
      * Function to get number of all documents.
      * 
-     * .
+     * @return return $res number of document.
      */
     public function numseeDocumentController()
     {
@@ -82,6 +83,8 @@ class DashboardController
      * @param $docstart    start point for pagination.
      * @param $docper_page per page document count.
      * @param $docpagi     pagi for document.
+     * 
+     * @return return document twig file.
      */
     public function seeDocumentController($docstart, $docper_page, $docpagi)
     {
@@ -91,7 +94,15 @@ class DashboardController
             ['res'=>$res,'docpagi'=>$docpagi]
         );
     }
-
+    /**
+     * Dashboardsummary function that displays summary.
+     * 
+     * @param $record    start point for pagination.
+     * @param $docrecord per page document count.
+     * @param $email     user email.
+     * 
+     * @return return document twig file.
+     */
     public function dashboardsummary($record, $docrecord, $email)
     {
         return $this->_twig->render(
@@ -99,11 +110,16 @@ class DashboardController
             ['record'=>$record,'docrecord' => $docrecord, 'useremail'=>$email]
         );
     }
-
+    /**
+     * Dashboard function that displays the dashboard.
+     * 
+     * @return return dashboard twig file.
+     */
     public function dashboard()
     {
         return $this->_twig->render(
-            'dashboard.html.twig');
+            'dashboard.html.twig'
+        );
     }
 }
 ?>

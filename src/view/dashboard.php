@@ -32,7 +32,7 @@ $docpagi = ceil($docrecord/$docper_page);
 if (isset($_POST['uploadfile'])) {
     $filename = isset($_FILES['document']['name']) ? $_FILES['document']['name']:null;
     $filetmp =isset($_FILES['document']['tmp_name']) ? $_FILES['document']['tmp_name']:null;
-   $uploadFileMsg = $userController->UploadDocumentController($filename, $filetmp);
+   $uploadFileMsg = $userController->uploadDocumentController($filename, $filetmp);
 }
 
 

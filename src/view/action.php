@@ -42,7 +42,7 @@ if (isset($_GET['type']) && $_GET['type'] == 'Update') {
             $userEmail = $_POST['email'];
             $userCompany = $_POST['company'];
             $userPhone = $_POST['phone'];
-            $userController->UpdateController($userId, $userName, $userEmail, $userCompany, $userPhone);
+            $userController->updateController($userId, $userName, $userEmail, $userCompany, $userPhone);
         }
     }
 }
@@ -50,7 +50,7 @@ if(isset($_GET['type']) && $_GET['type'] == 'Delete') {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST)) {
         $userId = $_POST['id'];
-        $userController->DeleteController($userId);    
+        $userController->deleteController($userId);    
     }
 }
     
@@ -59,7 +59,7 @@ if(isset($_GET['type']) && $_GET['type'] == 'LoginValid') {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_POST)) {
             $userEmail = $_POST['email'];
-            $userController->LoginValidController($userEmail);    
+            $userController->loginValidController($userEmail);    
         }
     }
         

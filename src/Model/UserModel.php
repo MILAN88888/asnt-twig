@@ -40,7 +40,7 @@ class UserModel
         }
 	}
 
-	public function LoginValidModel(string $userEmail): bool
+	public function loginValidModel(string $userEmail): bool
 	{
 		$sql = "select * from `user` where user_email = ?";
         $stmt = $this->_conn->prepare($sql);
@@ -54,7 +54,7 @@ class UserModel
         }
 	}
 
-	public function DeleteModel(int $userId): bool
+	public function deleteModel(int $userId): bool
 	{
 		$sql = "delete from `user` where user_id= ?";
         $stmt = $this->_conn->prepare($sql);
@@ -67,7 +67,7 @@ class UserModel
         }
 	}
 
-	public function UpdateModel(int $userId, string $userName, string $userEmail, string $userCompany,string $userPhone): bool
+	public function updateModel(int $userId, string $userName, string $userEmail, string $userCompany,string $userPhone): bool
 	{
 		$sql = "UPDATE user SET `user_name` = ?, user_email = ?, user_company = ?, user_phone_no = ?  WHERE user_id = ?";
 		$stmt = $this->_conn->prepare($sql);
@@ -80,7 +80,7 @@ class UserModel
         }
 	}
 
-	public function UploadDocumentModel(string $uploadFile): bool
+	public function uploadDocumentModel(string $uploadFile): bool
 	{
 		$sql = 'INSERT INTO document (document_name) values (?)';
         $stmt = $this->_conn->prepare($sql);
