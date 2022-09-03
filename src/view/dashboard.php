@@ -2,7 +2,7 @@
 require '../../vendor/autoload.php';
 require '../include/header.php';
 
-
+echo $dashboardController->dashboard();
 
 $uploadFileMsg = null;
 $per_page = 5;
@@ -52,8 +52,12 @@ if($uploadFileMsg == true) {
     echo '<div id="msge"><span>Successfully added</span><button id="btn">x</button></div>';
     
 }
-echo $dashboardController->dashboard($record, $docrecord, $_SESSION['user_email']);
-
+if(
+    (isset($_GET['type']) && $_GET['type'] == 'dashboard') ||
+     (isset($_GET['type']) && $_GET['type'] == 'rdashboard')
+     ) {
+    echo $dashboardController->dashboardsummary($record, $docrecord, $_SESSION['user_email']);
+}
 if (
 	(isset($_GET['docstart']) && $_GET['docstart']  != '') ||
 	(isset($_GET['document']) && $_GET['document']  != '') 

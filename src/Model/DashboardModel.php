@@ -3,61 +3,61 @@ namespace twigasnt\asnt\Model;
 
 class DashboardModel
 {	
-    private $_conn;
+    public $conn;
 
 	public function __construct($conn)
 	{
 		$this->conn = $conn;	
 	}
 
-	public function numseeUserModel()
+	public function numseeUserModel():int
 	{
 		$sql = "select * from `user` ";
-        $res = mysqli_query($this->conn,$sql);
-        $count = mysqli_num_rows($res);
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result= $stmt->get_result();
+        $count = $result->num_rows;
         return $count;   
 	}
-	public function seeUserModel($start,$per_page)
+
+	public function seeUserModel(int $start, int $per_page): array
 	{
-		$sql = "select * from `user` limit $start,$per_page";
-        $res = mysqli_query($this->conn,$sql);
-        $count = mysqli_num_rows($res);
-        if ($count > 0)
-        {   $result = array();
-            while ($row = mysqli_fetch_assoc($res))
-            {
+		$sql = "select * from `user` limit ?, ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("ii",$start,$per_page);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        if ($res->num_rows > 0) {
+            $result = array();
+            while ($row = mysqli_fetch_assoc($res)) {
                 array_push($result,$row);
             }
             return $result;
         }
-        else
-        {
-            return false;
-        }
+        
 	}
 	public function numseeDocumentModel()
 	{
 		$sql = "select * from `document`";
-        $res = mysqli_query($this->conn,$sql);
-        $count = mysqli_num_rows($res);
-        return $count;
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result= $stmt->get_result();
+        $count = $result->num_rows;
+        return $count; 
 	}
-	public function seeDocumentModel($docstart,$docper_page)
+	public function seeDocumentModel(int $docstart, int $docper_page):array
 	{
-		$sql = "select * from `document` limit $docstart,$docper_page";
-        $res = mysqli_query($this->conn,$sql);
-        $count = mysqli_num_rows($res);
-        if ($count > 0)
-        {   $result = array();
-            while ($row = mysqli_fetch_assoc($res))
-            {
+		$sql = "select * from `document` limit ?,?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("ii",$docstart,$docper_page);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        if ($res->num_rows > 0) {
+            $result = array();
+            while ($row = mysqli_fetch_assoc($res)) {
                 array_push($result,$row);
             }
             return $result;
-        }
-        else
-        {
-            return false;
         }
 	}
 	

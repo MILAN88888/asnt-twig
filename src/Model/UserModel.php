@@ -4,100 +4,100 @@ namespace twigasnt\asnt\Model;
 
 
 class UserModel
-{	private $_conn;
+{	
+    private $_conn;
 	public function __construct(object $conn)
 	{
-		$this->conn = $conn;	
+		$this->_conn = $conn;	
 	}
-	public function loginModel($userEmail,$userPass)
+	public function loginModel(string $userEmail, string $userPass)
 	{
-		$sql = "select * from `user` where user_email='$userEmail' and user_password='$userPass'";
-        $res = mysqli_query($this->conn,$sql);
-        $count = mysqli_num_rows($res);
-        if ($count > 0)
-        {   $result = array();
-            while ($row = mysqli_fetch_assoc($res))
-            {
+		$sql = "select * from `user` where user_email = ? and user_password = ?";
+        $stmt = $this->_conn->prepare($sql);
+        $stmt->bind_param("ss", $userEmail, $userPass);
+        $stmt->execute();
+        $res= $stmt->get_result();
+        if ($res->num_rows > 0) {
+            $result = array();
+            while ($row = mysqli_fetch_assoc($res)) {
                 array_push($result,$row);
             }
             return $result;
-        }
-        else
-        {
+        } else {
             return false;
         }
 	}
-	public function signupModel($userName,$userEmail,$userPass,$userPhoneNo,$userCompany)
+	public function signupModel(string $userName, string $userEmail, string $userPass, string $userPhoneNo, string $userCompany):bool
 	{
-		$sql = 'INSERT INTO user (user_name,user_email,`user_password`,user_phone_no,`user_company`) values ("'.$userName.'", "'.$userEmail.'","'.$userPass.'","'.$userPhoneNo.'","'.$userCompany.'")';
-        $res = mysqli_query($this->conn,$sql);
-        if($res)
-        {
+		$sql = 'INSERT INTO user (`user_name`,user_email,`user_password`,user_phone_no,`user_company`) values (?, ?, ?, ?, ?)';
+        $stmt = $this->_conn->prepare($sql);
+        $stmt->bind_param("sssss", $userName, $userEmail, $userPass, $userPhoneNo, $userCompany);
+        $res = $stmt->execute();
+        if($res) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
 	}
-	public function LoginValidModel($userEmail)
+
+	public function LoginValidModel(string $userEmail): bool
 	{
-		$sql = "select * from `user` where user_email='$userEmail'";
-        $res = mysqli_query($this->conn,$sql);
-        $count = mysqli_num_rows($res);
-        if ($count > 0)
-        {   
+		$sql = "select * from `user` where user_email = ?";
+        $stmt = $this->_conn->prepare($sql);
+        $stmt->bind_param("s",$userEmail);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        if ($res->num_rows > 0) {   
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
 	}
-	public function DeleteModel($userId)
+
+	public function DeleteModel(int $userId): bool
 	{
-		$sql = "delete from `user` where user_id='$userId'";
-        $res = mysqli_query($this->conn,$sql);
-        if ($res)
-        {   
+		$sql = "delete from `user` where user_id= ?";
+        $stmt = $this->_conn->prepare($sql);
+        $stmt->bind_param("i",$userId);
+        $res = $stmt->execute();
+        if ($res) {   
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
 	}
-	public function UpdateModel($userId,$userName,$userEmail,$userCompany,$userPhone)
+
+	public function UpdateModel(int $userId, string $userName, string $userEmail, string $userCompany,string $userPhone): bool
 	{
-		$sql = "UPDATE user SET user_name = '$userName', user_email = '$userEmail', user_company ='$userCompany', user_phone_no ='$userPhone'  WHERE user_id = '$userId'";
-		$res = mysqli_query($this->conn, $sql);
-        if ($res)
-        {   
+		$sql = "UPDATE user SET `user_name` = ?, user_email = ?, user_company = ?, user_phone_no = ?  WHERE user_id = ?";
+		$stmt = $this->_conn->prepare($sql);
+        $stmt->bind_param("ssssi",$userName, $userEmail, $userCompany, $userPhone,$userId);
+        $res = $stmt->execute();
+        if ($res) {   
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
 	}
-	public function UploadDocumentModel($uploadFile)
+
+	public function UploadDocumentModel(string $uploadFile): bool
 	{
-		$sql = 'INSERT INTO document (document_name) values ("'.$uploadFile.'")';
-        $res = mysqli_query($this->conn,$sql);
+		$sql = 'INSERT INTO document (document_name) values (?)';
+        $stmt = $this->_conn->prepare($sql);
+        $stmt->bind_param("s",$uploadFile);
+        $stmt->execute();
         return true;
-        
-  
 	}
-    public function addNewUserModel($newName,$newEmail,$newPassword,$newCompany,$newPhone)
+
+    public function addNewUserModel(string $newName, string $newEmail, string $newPassword, string $newCompany, string $newPhone)
     {
-        $sql = 'INSERT INTO user (`user_name`,user_email,`user_password`,user_phone_no,`user_company`) values ("'.$newName.'", "'.$newEmail.'","'.$newPassword.'","'.$newPhone.'","'.$newCompany.'")';
-        $res = mysqli_query($this->conn,$sql);
-        if($res)
-        {
+        $sql = 'INSERT INTO user (`user_name`,user_email,`user_password`,user_phone_no,`user_company`) values (?, ?, ?, ?, ?)';
+        $stmt = $this->_conn->prepare($sql);
+        $stmt->bind_param("sssss", $newName, $newEmail, $newPassword, $newPhone, $newCompany);
+        $res = $stmt->execute();
+        if($res) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }

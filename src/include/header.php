@@ -32,19 +32,19 @@ $dashboardController = new \twigasnt\asnt\Controller\DashboardController($dashbo
     <script src="<?php echo $baseurl?>view/js/jquery.validate.min.js"></script>
 
 <head>
-<body>
+<body style="background-color:lightgray">
 <nav class="navbar navbar-expand-lg navbar-light bg-primary ">
     <a class="navbar-brand" href="#">
     <img src="<?php echo $baseurl?>view/img/kiwi.svg" width="80" height="30" alt="">
     </a>
-    <a class="navbar-brand text-white" href="#">ASNT</a>
+    <a class="navbar-brand text-white" href="#">ASNT</a>&nbsp;&nbsp;&nbsp;
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
     </button>
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link text-white" href="<?php !isset($_SESSION['user_id']) ? print_r("index.php") : print_r("dashboard.php") ?>">Home </a>
+                <a class="nav-link text-white" href="<?php !isset($_SESSION['user_id']) ? print_r("index.php") : print_r("dashboard.php?type=rdashboard") ?>">Home </a>
             </li>
             <?php 
             if (!isset($_SESSION['user_id'])) { ?>
@@ -68,7 +68,7 @@ $dashboardController = new \twigasnt\asnt\Controller\DashboardController($dashbo
         
         </div>
         <?php if (isset($_SESSION['user_id'])) { ?>
-        <button class="text-white"   id= "logout"><a href="<?php echo $baseurl; ?>view/logout.php">Logout</a></button>
+            <a href="<?php echo $baseurl; ?>view/logout.php"><button class="text-white"   id= "logout">Logout</button></a>
         <?php } ?>
 </nav>
 <script src="<?php echo $baseurl ?>view/js/index.js"></script>

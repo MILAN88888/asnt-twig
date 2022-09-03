@@ -1,9 +1,18 @@
 #logout
 {	float:right;
-	border-radius: 5px;
+	margin-top: 8px;
+	background: none;
+    border: none;
+    padding: 0;
+    color:white;
+    cursor: pointer;
+    outline: inherit;
+
+	
 }
 #logout:hover{
 	background-color: green;
-	color:white;
+	color: black;
+	text-decoration: underline;
 }
 

@@ -18,10 +18,11 @@ class HomeController
 
     public function home()
     {
-       
-            return $this->twig->render('signin.html.twig');
-            
-          
+        return $this->twig->render('signin.html.twig');    
+    }
+    public function main()
+    {
+        return $this->twig->render('main.html.twig');
     }
 }
 ?>
