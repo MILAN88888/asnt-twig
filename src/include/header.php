@@ -14,7 +14,7 @@ session_start();
 $baseurl = 'http://localhost/asnt-twig/src/';
 
 
-$db = new twigasnt\asnt\Config\db();
+$db = new twigasnt\asnt\Config\Db();
 $conn = $db->getConnection();
 
 
@@ -95,7 +95,7 @@ $dashboardController = new
         
         </div>
         <?php if (isset($_SESSION['user_id'])) { ?>
-            <a href="<?php echo $baseurl; ?>view/logout.php">
+            <a href="action.php?type=logout">
             <button class="text-white"   id= "logout">Logout</button></a>
         <?php } ?>
 </nav>

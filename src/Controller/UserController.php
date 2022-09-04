@@ -24,7 +24,7 @@ namespace twigasnt\asnt\Controller;
 class UserController
 {
     private $_userModel;
-	public $result;
+    public $result;
 
     /**
      * Constructor for the User controller.
@@ -148,6 +148,7 @@ class UserController
         $result = $this->_userModel->UploadDocumentModel($filename);
         return $result;
     }
+    
     /**
      * Function to add new user.
      * 
@@ -168,6 +169,20 @@ class UserController
         );
         if ($res == true) {
             header('location:dashboard.php?user=user&newadd=ok');
+        }
+    }
+     /**
+      * Function to get the user loggedOut
+      * 
+      * @return nothing to return.
+      */
+    public function logOut()
+    {
+        session_start();
+        if (isset($_SESSION['user_id'])) {    
+            session_unset();
+            session_destroy();
+            header("location:../../index.php");
         }
     }
 }

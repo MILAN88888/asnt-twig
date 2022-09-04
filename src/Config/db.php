@@ -1,21 +1,50 @@
 <?php
+/**
+ * Db that controls database connectivity.
+ *
+ * PHP version 8.1.3
+ *
+ * @category Asnt
+ * @package  Asnt-twig
+ * @author   Original Author <chaudharymilan996@gmail.com>
+ * @license  http://www.php.net/license/3_01.txt  PHP License 3.01
+ * @link     http://pear.php.net/package/PackageName
+ */
 namespace twigasnt\asnt\Config;
 
-class db
+/**
+ * Db class handle Database method
+ * 
+ * @category Asnt
+ * @package  Asnt-twig
+ * @author   Original Author <chaudharymilan996@gmail.com>
+ * @license  http://www.php.net/license/3_01.txt  PHP License 3.01
+ * @link     http://pear.php.net/package/PackageName
+ */
+class Db
 {
-    private $conn;
+    private $_conn;
  
-	public function __construct()
-	{      
-		$serverName = "localhost";
-		$userName = "root";
-		$password = "";
-	    $database= "asnt_pro3";   
-		$this->conn = mysqli_connect($serverName, $userName, $password, $database);
-	}
-	public function getConnection()
-	{
-		return $this->conn;
-	}
+    /**
+     * Constructor for the database connection.
+     */
+    public function __construct()
+    {      
+        $serverName = "localhost";
+        $userName = "root";
+        $password = "";
+        $database= "asnt_pro3";   
+        $this->_conn = mysqli_connect($serverName, $userName, $password, $database);
+    }
+
+    /**
+     * Function to get connectionto database.
+     * 
+     * @return return $conn database object.
+     */
+    public function getConnection()
+    {
+        return $this->_conn;
+    }
 }
 ?>
