@@ -42,7 +42,7 @@ class UserController
      * @param $userEmail is useremail.
      * @param $userPass  is user password.
      * 
-     * @return return nothing.
+     * @return static return nothing.
      */
     public function loginController($userEmail, $userPass)
     {
@@ -69,7 +69,7 @@ class UserController
      * @param $userPhoneNo is user phone number.
      * @param $userCompany is user's company name.
      * 
-     * @return return nothing.
+     * @return static return nothing.
      */
     public function signupController($userName, $userEmail, $userPass,
         $userPhoneNo, $userCompany
@@ -90,7 +90,7 @@ class UserController
      * 
      * @param $userEmail is useremail.
      * 
-     * @return return true or false.
+     * @return static return true or false.
      */
     public function loginValidController($userEmail)
     {
@@ -103,7 +103,7 @@ class UserController
      * 
      * @param $userId is user id.
      * 
-     * @return return true or false.
+     * @return static return true or false.
      */
     public function deleteController($userId)
     {    
@@ -121,7 +121,7 @@ class UserController
      * @param $userCompany is user's company name.
      * @param $userPhone   is user phone number.
      * 
-     * @return return true or false.
+     * @return static return true or false.
      */
     public function updateController($userId, $userName, $userEmail,
         $userCompany, $userPhone
@@ -139,13 +139,13 @@ class UserController
      * @param $filename is name of file.
      * @param $filetmp  is temp name of file.
      * 
-     * @return return true or false.
+     * @return bool return true or false.
      */
-    public function uploadDocumentController($filename, $filetmp)
+    public function uploadDocumentController($filename, $filetmp):bool
     {
         $destination='../upload/'.$filename;
         move_uploaded_file($filetmp, $destination);
-        $result = $this->_userModel->UploadDocumentModel($filename);
+        $result = $this->_userModel->uploadDocumentModel($filename);
         return $result;
     }
     
@@ -158,7 +158,7 @@ class UserController
      * @param $newCompany  is user's company name.
      * @param $newPhone    is user phone number.
      * 
-     * @return return nothing.
+     * @return static return nothing.
      */
     public function addNewUserControler($newName,$newEmail,
         $newPassword,$newCompany,$newPhone
@@ -174,7 +174,7 @@ class UserController
      /**
       * Function to get the user loggedOut
       * 
-      * @return nothing to return.
+      * @return static nothing to return.
       */
     public function logOut()
     {

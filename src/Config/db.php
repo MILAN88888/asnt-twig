@@ -40,9 +40,9 @@ class Db
     /**
      * Function to get connectionto database.
      * 
-     * @return return $conn database object.
+     * @return object return $conn database object.
      */
-    public function getConnection()
+    public function getConnection(): object
     {
         return $this->_conn;
     }

@@ -13,14 +13,17 @@
 require '../../vendor/autoload.php';
 require '../include/header.php';
 
-$db = new twigasnt\asnt\Config\db();
+$db = new twigasnt\asnt\Config\Db();
 $conn = $db->getConnection();
 
 $dashboardModel = new \twigasnt\asnt\Model\DashboardModel($conn);
 $userModel = new \twigasnt\asnt\Model\UserModel($conn);
 
-echo $dashboardController->dashboard();
-
+$userController = new \twigasnt\asnt\Controller\UserController($userModel);
+$dashboardController = new 
+\twigasnt\asnt\Controller\DashboardController($dashboardModel);
+$dashboardController->dashboard();
+$baseurl = 'http://localhost/asnt-twig/src/';
 $uploadFileMsg = 0;
 $per_page = 5;
 $start = 0;
@@ -72,21 +75,21 @@ if ($uploadFileMsg == true) {
 if ((isset($_GET['type']) && $_GET['type'] == 'dashboard') 
     || (isset($_GET['type']) && $_GET['type'] == 'rdashboard')
 ) {
-    echo $dashboardController->dashboardsummary(
-        $record, $docrecord, $_SESSION['user_email']
-    );
+        $dashboardController->dashboardsummary(
+            $record, $docrecord, $_SESSION['user_email']
+        );
 }
 if ((isset($_GET['docstart']) && $_GET['docstart']  != '') 
     || (isset($_GET['document']) && $_GET['document']  != '') 
 ) {    
-        echo $dashboardController->seeDocumentController(
+        $dashboardController->seeDocumentController(
             $docstart, $docper_page, $docpagi
         );
 }
 if ((isset($_GET['start']) && $_GET['start']  != '') 
     || (isset($_GET['user']) && $_GET['user']  != '') 
 ) {    
-        echo $dashboardController->seeUserController($start, $per_page, $pagi);
+        $dashboardController->seeUserController($start, $per_page, $pagi);
 }
 
 ?>

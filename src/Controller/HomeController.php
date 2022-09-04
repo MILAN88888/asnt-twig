@@ -41,7 +41,7 @@ class HomeController
     /**
      * Function to rendor of siginin modal.
      * 
-     * @return return singini modal.
+     * @return static return singini modal.
      */
     public function home()
     {
@@ -50,7 +50,7 @@ class HomeController
     /**
      * Function to rendor of main twig file.
      * 
-     * @return return main twig file.
+     * @return static return main twig file.
      */
     public function main()
     {

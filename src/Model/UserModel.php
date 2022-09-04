@@ -43,9 +43,9 @@ class UserModel
       * @param $userEmail is useremail.
       * @param $userPass  is user password.
       * 
-      * @return return $result or false containts.
+      * @return mixed return $result or false containts.
       */
-    public function loginModel(string $userEmail, string $userPass)
+    public function loginModel(string $userEmail, string $userPass): mixed
     {
         $sql = "select * from `user` where user_email = ? and user_password = ?";
         $stmt = $this->_conn->prepare($sql);
@@ -72,7 +72,7 @@ class UserModel
      * @param $userPhoneNo is user phone number.
      * @param $userCompany is user's company name.
      * 
-     * @return return true and false.
+     * @return bool return true and false.
      */
     public function signupModel(string $userName, string $userEmail,
         string $userPass, string $userPhoneNo, string $userCompany
@@ -98,9 +98,9 @@ class UserModel
      * 
      * @param $userEmail is useremail.
      * 
-     * @return return true or false.
+     * @return mixed return true or false.
      */
-    public function loginValidModel(string $userEmail): bool
+    public function loginValidModel(string $userEmail): mixed
     {
         $sql = "select * from `user` where user_email = ?";
         $stmt = $this->_conn->prepare($sql);
@@ -119,7 +119,7 @@ class UserModel
      * 
      * @param $userId is user id.
      * 
-     * @return return true or false.
+     * @return bool return true or false.
      */
     public function deleteModel(int $userId): bool
     {
@@ -143,7 +143,7 @@ class UserModel
      * @param $userCompany is user's company name.
      * @param $userPhone   is user phone number.
      * 
-     * @return return true or false.
+     * @return bool return true or false.
      */
     public function updateModel(int $userId, string $userName,
         string $userEmail, string $userCompany,string $userPhone
@@ -169,7 +169,7 @@ class UserModel
      * 
      * @param $uploadFile is name of file to upload.
      * 
-     * @return return true or false.
+     * @return bool return true or false.
      */
     public function uploadDocumentModel(string $uploadFile): bool
     {
@@ -189,11 +189,11 @@ class UserModel
      * @param $newCompany  is user's company name.
      * @param $newPhone    is user phone number.
      * 
-     * @return return true or false.
+     * @return mixed return true or false.
      */
     public function addNewUserModel(string $newName, string $newEmail,
         string $newPassword, string $newCompany, string $newPhone
-    ) {
+    ): mixed {
         $sql = 'INSERT INTO user
          (`user_name`,user_email,`user_password`,user_phone_no,`user_company`)
          values (?, ?, ?, ?, ?)';
@@ -210,5 +210,4 @@ class UserModel
         }
     }
 }
-
 ?>

@@ -46,9 +46,9 @@ class DashboardController
     /**
      * Function to get number of all users.
      * 
-     * @return return $res number of user.
+     * @return int return $res number of user.
      */
-    public function numseeUserController()
+    public function numseeUserController() :int 
     {
         $res = $this->dashboardModel->numseeUserModel();
         return $res;
@@ -60,19 +60,19 @@ class DashboardController
      * @param $per_page per page user count.
      * @param $pagi     pagi for user.
      * 
-     * @return return user twig  from the twig.
+     * @return void return user twig  from the twig.
      */
     public function seeUserController($start, $per_page, $pagi)
     {
         $res = $this->dashboardModel->seeUserModel($start, $per_page);
-        return $this->_twig->render('user.html.twig', ['res'=>$res,'pagi'=>$pagi]);
+        echo $this->_twig->render('user.html.twig', ['res'=>$res,'pagi'=>$pagi]);
     }
     /**
      * Function to get number of all documents.
      * 
-     * @return return $res number of document.
+     * @return int return $res number of document.
      */
-    public function numseeDocumentController()
+    public function numseeDocumentController():int
     {
         $res = $this->dashboardModel->numseeDocumentModel();
         return $res;
@@ -84,12 +84,12 @@ class DashboardController
      * @param $docper_page per page document count.
      * @param $docpagi     pagi for document.
      * 
-     * @return return document twig file.
+     * @return void return document twig file.
      */
     public function seeDocumentController($docstart, $docper_page, $docpagi)
     {
         $res = $this->dashboardModel->seeDocumentModel($docstart, $docper_page);
-        return $this->_twig->render(
+        echo $this->_twig->render(
             'document.html.twig', 
             ['res'=>$res,'docpagi'=>$docpagi]
         );
@@ -101,11 +101,11 @@ class DashboardController
      * @param $docrecord per page document count.
      * @param $email     user email.
      * 
-     * @return return document twig file.
+     * @return void return document twig file.
      */
     public function dashboardsummary($record, $docrecord, $email)
     {
-        return $this->_twig->render(
+        echo $this->_twig->render(
             'dashboardsummary.html.twig',
             ['record'=>$record,'docrecord' => $docrecord, 'useremail'=>$email]
         );
@@ -113,11 +113,11 @@ class DashboardController
     /**
      * Dashboard function that displays the dashboard.
      * 
-     * @return return dashboard twig file.
+     * @return void return dashboard twig file.
      */
-    public function dashboard()
+    public function dashboard() 
     {
-        return $this->_twig->render(
+        echo $this->_twig->render(
             'dashboard.html.twig'
         );
     }

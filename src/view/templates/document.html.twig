@@ -12,7 +12,7 @@
 <tr><th>Name</th><th>View</th></tr>
 {% for value in res %}
     <tr><th>{{ value["document_name"] }}</th>
-        <td><a href="../upload/'{{ value["document_name"] }}">view attachment</a></td>
+        <td><a target="_blank" href="../upload/{{ value["document_name"] }}">view attachment</a></td>
     </tr>
 
 {% endfor %}

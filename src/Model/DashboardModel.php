@@ -38,7 +38,7 @@ class DashboardModel
     /**
      * Function to get number of all users.
      * 
-     * @return return $count number of user.
+     * @return int  return $count number of user.
      */
     public function numseeUserModel(): int
     {
@@ -55,8 +55,8 @@ class DashboardModel
       * 
       * @param $start    start point for pagination.
       * @param $per_page per page user count.
-      * 
-      * @return return $result array of users.
+      *
+      * @return array return $result array of users.
       */
     public function seeUserModel(int $start, int $per_page): array
     {
@@ -66,7 +66,7 @@ class DashboardModel
         $stmt->execute();
         $res = $stmt->get_result();
         $count = $res->num_rows;
-        if ($count > 0) {
+        if ($count > 0) { 
             $result = array();
             while ($row = mysqli_fetch_assoc($res)) {
                 array_push($result, $row);
@@ -78,7 +78,7 @@ class DashboardModel
     /**
      * Function to get number of all documents.
      * 
-     * @return return $count number of document.
+     * @return int return $count number of document.
      */
     public function numseeDocumentModel(): int
     {
@@ -96,7 +96,7 @@ class DashboardModel
      * @param $docstart    start point for pagination.
      * @param $docper_page per page document count.
      * 
-     * @return return $result array of document.
+     * @return array return $result array of document.
      */
     public function seeDocumentModel(int $docstart, int $docper_page): array
     {
@@ -112,8 +112,6 @@ class DashboardModel
             }
             return $result;
         }
-    }
-    
+    } 
 }
-
 ?>
